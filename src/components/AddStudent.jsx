@@ -11,6 +11,14 @@ const AddStudent = ({ handleAddStudent }) => {
 		graduated: false,
 	});
 
+	const updateStudent = e => {
+		setStudent({
+			...student,
+			[e.target.name]:
+				e.target.type === 'checkbox' ? e.target.checked : e.target.value,
+		});
+	};
+
 	const addStudent = e => {
 		e.preventDefault();
 		handleAddStudent(student);
@@ -29,9 +37,7 @@ const AddStudent = ({ handleAddStudent }) => {
 							type='text'
 							placeholder='Full Name'
 							value={student.fullName}
-							onChange={e =>
-								setStudent({ ...student, fullName: e.target.value })
-							}
+							onChange={updateStudent}
 						/>
 					</label>
 
@@ -42,7 +48,7 @@ const AddStudent = ({ handleAddStudent }) => {
 							type='url'
 							placeholder='Profile Image'
 							value={student.image}
-							onChange={e => setStudent({ ...student, image: e.target.value })}
+							onChange={updateStudent}
 						/>
 					</label>
 
@@ -53,7 +59,7 @@ const AddStudent = ({ handleAddStudent }) => {
 							type='tel'
 							placeholder='Phone'
 							value={student.phone}
-							onChange={e => setStudent({ ...student, phone: e.target.value })}
+							onChange={updateStudent}
 						/>
 					</label>
 
@@ -64,7 +70,7 @@ const AddStudent = ({ handleAddStudent }) => {
 							type='email'
 							placeholder='Email'
 							value={student.email}
-							onChange={e => setStudent({ ...student, email: e.target.value })}
+							onChange={updateStudent}
 						/>
 					</label>
 				</div>
@@ -75,9 +81,7 @@ const AddStudent = ({ handleAddStudent }) => {
 						<select
 							name='program'
 							value={student.program}
-							onChange={e =>
-								setStudent({ ...student, program: e.target.value })
-							}
+							onChange={updateStudent}
 						>
 							<option value=''>-- None --</option>
 							<option value='Web Dev'>Web Dev</option>
@@ -97,9 +101,7 @@ const AddStudent = ({ handleAddStudent }) => {
 							min={2023}
 							max={2030}
 							value={student.graduationYear}
-							onChange={e =>
-								setStudent({ ...student, graduationYear: e.target.value })
-							}
+							onChange={updateStudent}
 						/>
 					</label>
 
@@ -109,9 +111,7 @@ const AddStudent = ({ handleAddStudent }) => {
 							name='graduated'
 							type='checkbox'
 							checked={student.graduated}
-							onChange={e =>
-								setStudent({ ...student, graduated: e.target.checked })
-							}
+							onChange={updateStudent}
 						/>
 					</label>
 
